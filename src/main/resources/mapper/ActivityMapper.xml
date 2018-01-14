@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tseong.gecmvc.dao.ActivityMapper">
+  <resultMap id="BaseResultMap" type="com.tseong.gecmvc.model.Activity">
+    <constructor>
+      <idArg column="a_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_launchtime" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="a_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="a_remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    a_id, a_launchtime, a_name, a_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activity
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from activity
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tseong.gecmvc.model.Activity">
+    insert into activity (a_id, a_launchtime, a_name, 
+      a_remark)
+    values (#{aId,jdbcType=INTEGER}, #{aLaunchtime,jdbcType=DATE}, #{aName,jdbcType=VARCHAR}, 
+      #{aRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tseong.gecmvc.model.Activity">
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="aLaunchtime != null">
+        a_launchtime,
+      </if>
+      <if test="aName != null">
+        a_name,
+      </if>
+      <if test="aRemark != null">
+        a_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aLaunchtime != null">
+        #{aLaunchtime,jdbcType=DATE},
+      </if>
+      <if test="aName != null">
+        #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aRemark != null">
+        #{aRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tseong.gecmvc.model.Activity">
+    update activity
+    <set>
+      <if test="aLaunchtime != null">
+        a_launchtime = #{aLaunchtime,jdbcType=DATE},
+      </if>
+      <if test="aName != null">
+        a_name = #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aRemark != null">
+        a_remark = #{aRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tseong.gecmvc.model.Activity">
+    update activity
+    set a_launchtime = #{aLaunchtime,jdbcType=DATE},
+      a_name = #{aName,jdbcType=VARCHAR},
+      a_remark = #{aRemark,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+</mapper>

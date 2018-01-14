@@ -1,0 +1,80 @@
+
+<html>
+  <head>
+    <title>ajax test</title>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script>
+
+
+        $(document).ready(function() {
+            $("#getMethod").click(function() {
+                getAction();
+            });
+            $("#postMethod").click(function() {
+                getPost();
+            });
+        });
+
+        function getAction() {
+            var url = 'http://localhost:8080/GecGrouping/Contacts/';
+            var query = $('#id').val();
+            url += query;
+
+            alert(url);
+
+            $.ajaxSetup({
+                contentType : 'application/json'
+            });
+
+
+            /*
+            $.get(url, function (data) {
+                alert(data.pCname);
+            })*/
+
+            $.ajax({
+                url: "http://localhost:8080/GecGrouping/Contacts/1",
+                type: "GET",
+                dataType: 'JSON',
+                success: function(person){
+                    alert(person.pCname);
+                    //$("#name").val=person.pCname;
+                }
+            });
+        }
+
+        function getPost() {
+
+        }
+
+    </script>
+
+  </head>
+  <body>
+
+  <p id="ppp"></p>
+  <input type="button" id="getMethod" value="GET ACTION">
+
+  <input type="button" id="postMethod" value="POST ACTION">
+
+  <table>
+    <tr>
+      <td>id</td>
+      <td><input id="id" value="1" /></td>
+    </tr>
+
+    <tr>
+      <td>name</td>
+      <td><input id="name" value="snowolf" /></td>
+    </tr>
+
+    <tr>
+      <td>status</td>
+      <td><input id="status" value="true" /></td>
+    </tr>
+
+  </table>
+
+  </body>
+</html>

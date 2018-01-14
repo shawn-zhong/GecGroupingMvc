@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tseong.gecmvc.dao.GroupWillMapper">
+  <resultMap id="BaseResultMap" type="com.tseong.gecmvc.model.GroupWill">
+    <constructor>
+      <idArg column="w_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="w_aid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="w_pid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="w_language" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="w_experience" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="w_role" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="w_bewith" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="w_remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    w_id, w_aid, w_pid, w_language, w_experience, w_role, w_bewith, w_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groupwill
+    where w_id = #{wId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from groupwill
+    where w_id = #{wId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tseong.gecmvc.model.GroupWill">
+    insert into groupwill (w_id, w_aid, w_pid, 
+      w_language, w_experience, w_role, 
+      w_bewith, w_remark)
+    values (#{wId,jdbcType=INTEGER}, #{wAid,jdbcType=INTEGER}, #{wPid,jdbcType=INTEGER}, 
+      #{wLanguage,jdbcType=VARCHAR}, #{wExperience,jdbcType=INTEGER}, #{wRole,jdbcType=VARCHAR}, 
+      #{wBewith,jdbcType=VARCHAR}, #{wRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tseong.gecmvc.model.GroupWill">
+    insert into groupwill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wId != null">
+        w_id,
+      </if>
+      <if test="wAid != null">
+        w_aid,
+      </if>
+      <if test="wPid != null">
+        w_pid,
+      </if>
+      <if test="wLanguage != null">
+        w_language,
+      </if>
+      <if test="wExperience != null">
+        w_experience,
+      </if>
+      <if test="wRole != null">
+        w_role,
+      </if>
+      <if test="wBewith != null">
+        w_bewith,
+      </if>
+      <if test="wRemark != null">
+        w_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wId != null">
+        #{wId,jdbcType=INTEGER},
+      </if>
+      <if test="wAid != null">
+        #{wAid,jdbcType=INTEGER},
+      </if>
+      <if test="wPid != null">
+        #{wPid,jdbcType=INTEGER},
+      </if>
+      <if test="wLanguage != null">
+        #{wLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="wExperience != null">
+        #{wExperience,jdbcType=INTEGER},
+      </if>
+      <if test="wRole != null">
+        #{wRole,jdbcType=VARCHAR},
+      </if>
+      <if test="wBewith != null">
+        #{wBewith,jdbcType=VARCHAR},
+      </if>
+      <if test="wRemark != null">
+        #{wRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tseong.gecmvc.model.GroupWill">
+    update groupwill
+    <set>
+      <if test="wAid != null">
+        w_aid = #{wAid,jdbcType=INTEGER},
+      </if>
+      <if test="wPid != null">
+        w_pid = #{wPid,jdbcType=INTEGER},
+      </if>
+      <if test="wLanguage != null">
+        w_language = #{wLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="wExperience != null">
+        w_experience = #{wExperience,jdbcType=INTEGER},
+      </if>
+      <if test="wRole != null">
+        w_role = #{wRole,jdbcType=VARCHAR},
+      </if>
+      <if test="wBewith != null">
+        w_bewith = #{wBewith,jdbcType=VARCHAR},
+      </if>
+      <if test="wRemark != null">
+        w_remark = #{wRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where w_id = #{wId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tseong.gecmvc.model.GroupWill">
+    update groupwill
+    set w_aid = #{wAid,jdbcType=INTEGER},
+      w_pid = #{wPid,jdbcType=INTEGER},
+      w_language = #{wLanguage,jdbcType=VARCHAR},
+      w_experience = #{wExperience,jdbcType=INTEGER},
+      w_role = #{wRole,jdbcType=VARCHAR},
+      w_bewith = #{wBewith,jdbcType=VARCHAR},
+      w_remark = #{wRemark,jdbcType=VARCHAR}
+    where w_id = #{wId,jdbcType=INTEGER}
+  </update>
+</mapper>

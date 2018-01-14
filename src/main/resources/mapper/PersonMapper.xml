@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tseong.gecmvc.dao.PersonMapper">
+  <resultMap id="BaseResultMap" type="com.tseong.gecmvc.model.Person">
+    <constructor>
+      <idArg column="p_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="p_ismale" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="p_ename" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="p_cname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="p_hometown" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="p_occupation" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="p_mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="p_qq" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="p_wechat" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="p_district" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="p_remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    p_id, p_ismale, p_ename, p_cname, p_hometown, p_occupation, p_mobile, p_qq, p_wechat, 
+    p_district, p_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where p_id = #{pId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from person
+    where p_id = #{pId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tseong.gecmvc.model.Person">
+    insert into person (p_id, p_ismale, p_ename, 
+      p_cname, p_hometown, p_occupation, 
+      p_mobile, p_qq, p_wechat, 
+      p_district, p_remark)
+    values (#{pId,jdbcType=INTEGER}, #{pIsmale,jdbcType=INTEGER}, #{pEname,jdbcType=VARCHAR}, 
+      #{pCname,jdbcType=VARCHAR}, #{pHometown,jdbcType=VARCHAR}, #{pOccupation,jdbcType=VARCHAR}, 
+      #{pMobile,jdbcType=VARCHAR}, #{pQq,jdbcType=VARCHAR}, #{pWechat,jdbcType=VARCHAR}, 
+      #{pDistrict,jdbcType=VARCHAR}, #{pRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tseong.gecmvc.model.Person">
+    insert into person
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="pIsmale != null">
+        p_ismale,
+      </if>
+      <if test="pEname != null">
+        p_ename,
+      </if>
+      <if test="pCname != null">
+        p_cname,
+      </if>
+      <if test="pHometown != null">
+        p_hometown,
+      </if>
+      <if test="pOccupation != null">
+        p_occupation,
+      </if>
+      <if test="pMobile != null">
+        p_mobile,
+      </if>
+      <if test="pQq != null">
+        p_qq,
+      </if>
+      <if test="pWechat != null">
+        p_wechat,
+      </if>
+      <if test="pDistrict != null">
+        p_district,
+      </if>
+      <if test="pRemark != null">
+        p_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pIsmale != null">
+        #{pIsmale,jdbcType=INTEGER},
+      </if>
+      <if test="pEname != null">
+        #{pEname,jdbcType=VARCHAR},
+      </if>
+      <if test="pCname != null">
+        #{pCname,jdbcType=VARCHAR},
+      </if>
+      <if test="pHometown != null">
+        #{pHometown,jdbcType=VARCHAR},
+      </if>
+      <if test="pOccupation != null">
+        #{pOccupation,jdbcType=VARCHAR},
+      </if>
+      <if test="pMobile != null">
+        #{pMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pQq != null">
+        #{pQq,jdbcType=VARCHAR},
+      </if>
+      <if test="pWechat != null">
+        #{pWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="pDistrict != null">
+        #{pDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="pRemark != null">
+        #{pRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tseong.gecmvc.model.Person">
+    update person
+    <set>
+      <if test="pIsmale != null">
+        p_ismale = #{pIsmale,jdbcType=INTEGER},
+      </if>
+      <if test="pEname != null">
+        p_ename = #{pEname,jdbcType=VARCHAR},
+      </if>
+      <if test="pCname != null">
+        p_cname = #{pCname,jdbcType=VARCHAR},
+      </if>
+      <if test="pHometown != null">
+        p_hometown = #{pHometown,jdbcType=VARCHAR},
+      </if>
+      <if test="pOccupation != null">
+        p_occupation = #{pOccupation,jdbcType=VARCHAR},
+      </if>
+      <if test="pMobile != null">
+        p_mobile = #{pMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pQq != null">
+        p_qq = #{pQq,jdbcType=VARCHAR},
+      </if>
+      <if test="pWechat != null">
+        p_wechat = #{pWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="pDistrict != null">
+        p_district = #{pDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="pRemark != null">
+        p_remark = #{pRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tseong.gecmvc.model.Person">
+    update person
+    set p_ismale = #{pIsmale,jdbcType=INTEGER},
+      p_ename = #{pEname,jdbcType=VARCHAR},
+      p_cname = #{pCname,jdbcType=VARCHAR},
+      p_hometown = #{pHometown,jdbcType=VARCHAR},
+      p_occupation = #{pOccupation,jdbcType=VARCHAR},
+      p_mobile = #{pMobile,jdbcType=VARCHAR},
+      p_qq = #{pQq,jdbcType=VARCHAR},
+      p_wechat = #{pWechat,jdbcType=VARCHAR},
+      p_district = #{pDistrict,jdbcType=VARCHAR},
+      p_remark = #{pRemark,jdbcType=VARCHAR}
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+</mapper>

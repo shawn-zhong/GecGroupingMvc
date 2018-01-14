@@ -1,0 +1,14 @@
+*.log
+.idea
+logs
+target
+mvclog
+dbconfig.properties
+out
+.idea/workspace.xml
+.DS_Store
+resource/.DS_Store
+src/.DS_Store
+src/.DS_Store
+resource/.DS_Store
+src/.DS_Store

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tseong.gecmvc.dao.GroupDoneMapper">
+  <resultMap id="BaseResultMap" type="com.tseong.gecmvc.model.GroupDone">
+    <constructor>
+      <idArg column="g_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="g_aid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="g_pid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="g_role" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="g_with_pid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="g_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="g_language" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="g_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="g_fixed" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="g_remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    g_id, g_aid, g_pid, g_role, g_with_pid, g_no, g_language, g_name, g_fixed, g_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groupok
+    where g_id = #{gId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from groupok
+    where g_id = #{gId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tseong.gecmvc.model.GroupDone">
+    insert into groupok (g_id, g_aid, g_pid, 
+      g_role, g_with_pid, g_no, 
+      g_language, g_name, g_fixed, 
+      g_remark)
+    values (#{gId,jdbcType=INTEGER}, #{gAid,jdbcType=INTEGER}, #{gPid,jdbcType=INTEGER}, 
+      #{gRole,jdbcType=VARCHAR}, #{gWithPid,jdbcType=INTEGER}, #{gNo,jdbcType=INTEGER}, 
+      #{gLanguage,jdbcType=VARCHAR}, #{gName,jdbcType=VARCHAR}, #{gFixed,jdbcType=INTEGER}, 
+      #{gRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tseong.gecmvc.model.GroupDone">
+    insert into groupok
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gId != null">
+        g_id,
+      </if>
+      <if test="gAid != null">
+        g_aid,
+      </if>
+      <if test="gPid != null">
+        g_pid,
+      </if>
+      <if test="gRole != null">
+        g_role,
+      </if>
+      <if test="gWithPid != null">
+        g_with_pid,
+      </if>
+      <if test="gNo != null">
+        g_no,
+      </if>
+      <if test="gLanguage != null">
+        g_language,
+      </if>
+      <if test="gName != null">
+        g_name,
+      </if>
+      <if test="gFixed != null">
+        g_fixed,
+      </if>
+      <if test="gRemark != null">
+        g_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gId != null">
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="gAid != null">
+        #{gAid,jdbcType=INTEGER},
+      </if>
+      <if test="gPid != null">
+        #{gPid,jdbcType=INTEGER},
+      </if>
+      <if test="gRole != null">
+        #{gRole,jdbcType=VARCHAR},
+      </if>
+      <if test="gWithPid != null">
+        #{gWithPid,jdbcType=INTEGER},
+      </if>
+      <if test="gNo != null">
+        #{gNo,jdbcType=INTEGER},
+      </if>
+      <if test="gLanguage != null">
+        #{gLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="gName != null">
+        #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gFixed != null">
+        #{gFixed,jdbcType=INTEGER},
+      </if>
+      <if test="gRemark != null">
+        #{gRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tseong.gecmvc.model.GroupDone">
+    update groupok
+    <set>
+      <if test="gAid != null">
+        g_aid = #{gAid,jdbcType=INTEGER},
+      </if>
+      <if test="gPid != null">
+        g_pid = #{gPid,jdbcType=INTEGER},
+      </if>
+      <if test="gRole != null">
+        g_role = #{gRole,jdbcType=VARCHAR},
+      </if>
+      <if test="gWithPid != null">
+        g_with_pid = #{gWithPid,jdbcType=INTEGER},
+      </if>
+      <if test="gNo != null">
+        g_no = #{gNo,jdbcType=INTEGER},
+      </if>
+      <if test="gLanguage != null">
+        g_language = #{gLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="gName != null">
+        g_name = #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gFixed != null">
+        g_fixed = #{gFixed,jdbcType=INTEGER},
+      </if>
+      <if test="gRemark != null">
+        g_remark = #{gRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tseong.gecmvc.model.GroupDone">
+    update groupok
+    set g_aid = #{gAid,jdbcType=INTEGER},
+      g_pid = #{gPid,jdbcType=INTEGER},
+      g_role = #{gRole,jdbcType=VARCHAR},
+      g_with_pid = #{gWithPid,jdbcType=INTEGER},
+      g_no = #{gNo,jdbcType=INTEGER},
+      g_language = #{gLanguage,jdbcType=VARCHAR},
+      g_name = #{gName,jdbcType=VARCHAR},
+      g_fixed = #{gFixed,jdbcType=INTEGER},
+      g_remark = #{gRemark,jdbcType=VARCHAR}
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+</mapper>
