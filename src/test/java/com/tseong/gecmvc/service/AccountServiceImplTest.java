@@ -1,4 +1,4 @@
-package service;
+package com.tseong.gecmvc.service;
 
 import com.tseong.gecmvc.model.Account;
 import com.tseong.gecmvc.service.IAccountService;
